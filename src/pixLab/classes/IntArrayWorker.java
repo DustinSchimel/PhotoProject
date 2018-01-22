@@ -99,5 +99,43 @@ public class IntArrayWorker
       }
     }
   }
- 
+  
+  /**
+   * Gets the total amount of the values in a certain column
+   * @param col
+   * @return
+   */
+  public int getColTotal(int col)
+  {
+	  int total = 0; 
+	  
+	  for (int row = 0; row < matrix.length; row++)
+	  {
+		  total = total + matrix[row][col];
+	  }
+	  
+	  return total;
+  }
+  
+  /**
+   * Gets the largest number in the entire array
+   * @return
+   */
+  public int getLargest()
+  {
+	  int largest = 0;
+	  
+	  for (int row = 0; row < matrix.length; row++)
+	  {
+		  for (int col = 0; col < matrix[0].length; col++)
+		  {
+			  if (largest < matrix[row][col])
+			  {
+				  largest = matrix[row][col];
+			  }
+		  }
+	  }
+	  
+	  return largest;
+  }
 }
