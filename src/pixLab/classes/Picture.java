@@ -230,4 +230,34 @@ public class Picture extends SimplePicture
     beach.explore();
   }
   
+  public void kirbyFilter(int startRow, int startCol)
+  {
+	  Pixel fromPixel = null;
+	  Pixel toPixel = null;
+	  Picture kirby = new Picture("KirbyPlease.png");
+	  Pixel [][] toPixels = this.getPixels2D();
+	  Pixel [][] fromPixels = kirby.getPixels2D();
+	  
+	  int fromRow = 0;
+	  for (int toRow = startRow; toRow < toPixels.length && fromRow < fromPixels.length; toRow++ )
+	  {
+		  int fromCol = 0;
+		  for (int toCol = startCol; toCol < toPixels[0].length && fromCol < fromPixels[0].length; toCol++)
+		  {
+			  fromPixel = fromPixels[fromRow][fromCol];
+			  toPixel = toPixels[toRow][toCol];
+			  if (!fromPixel.isTransparent())
+			  {
+				  toPixel.setRed(fromPixel.getRed());
+				  toPixel.setBlue(fromPixel.getBlue());
+				  toPixel.setGreen(fromPixel.getGreen());
+			  }
+			  fromCol++;
+			  
+		  }
+		  fromRow++;
+		  
+	  }
+  }
+  
 } // this } is the end of class Picture, put all new methods before this
