@@ -154,6 +154,7 @@ public class Picture extends SimplePicture
 	  
 	  Pixel startPixel = null;
 	  Pixel newPixel = null;
+	  double adding = 0;
 	  
 	  int randomPercent = min + randomNum.nextInt(max);
 	  
@@ -165,12 +166,25 @@ public class Picture extends SimplePicture
 	  {
 		  double divRowLength = pixels.length / 100;
 		  
+		  double multiplier = divRowLength * randomPercent;
+		  
 		  for (int row = 0; row < pixels.length; row++)
 		  {
 			  for (int col = 0; col < pixels[0].length; col++)
 			  {
 				  startPixel = pixels[row][col];      
-			      newPixel = pixels[row += divRowLength * randomPercent][col];
+				  if (row + divRowLength * randomPercent < pixels.length)
+				  {
+					  newPixel = pixels[row += multiplier][col];
+			      	  newPixel.setColor(startPixel.getColor());
+				  }
+				  else
+				  {
+					  adding = pixels.length - (row + multiplier);
+					  adding *= -1;
+					  newPixel = pixels[(int)adding][col];
+					  newPixel.setColor(startPixel.getColor());
+				  }
 			  }
 		  }
 		  
