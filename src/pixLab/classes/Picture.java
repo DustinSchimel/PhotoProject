@@ -173,18 +173,19 @@ public class Picture extends SimplePicture
 		  {
 			  for (int col = 0; col < pixels[0].length; col++)
 			  {
-				  startPixel = pixels[row][col];      
+				  startPixel = pixels[row][col]; 
+				  Color startPixelColor = startPixel.getColor();
 				  if (col + shift < pixels[0].length)
 				  {
 					  newPixel = pixels[row][col + shift];
-			      	  newPixel.setColor(startPixel.getColor());
+			      	  newPixel.setColor(startPixelColor);
 				  }
 				  else
 				  {
 					  shiftedCol = pixels[0].length - (col + shift);
 					  shiftedCol *= -1;
 					  newPixel = pixels[row][shiftedCol];
-					  newPixel.setColor(startPixel.getColor());
+					  newPixel.setColor(startPixelColor);
 				  }
 			  }
 		  }
