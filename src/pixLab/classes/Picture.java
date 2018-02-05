@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.text.*;
 import java.util.*;
 import java.util.List; // resolves problem with java.awt.List and java.util.List
+import java.util.Random;
 
 /**
  * A class that represents a picture.  This class inherits from 
@@ -120,19 +121,19 @@ public class Picture extends SimplePicture
   }
   
   /** Mirror just part of a picture of a temple */
-  public void mirrorTemple()
+  public void mirrorSwan()
   {
-    int mirrorPoint = 276;
+    int mirrorPoint = 250;
     Pixel leftPixel = null;
     Pixel rightPixel = null;
     int count = 0;
     Pixel[][] pixels = this.getPixels2D();
     
     // loop through the rows
-    for (int row = 27; row < 97; row++)
+    for (int row = 65; row < 280; row++)
     {
       // loop from 13 to just before the mirror point
-      for (int col = 13; col < mirrorPoint; col++)
+      for (int col = 200; col < mirrorPoint; col++)
       {
         
         leftPixel = pixels[row][col];      
@@ -141,6 +142,40 @@ public class Picture extends SimplePicture
         rightPixel.setColor(leftPixel.getColor());
       }
     }
+  }
+  
+  public void glitchFilter()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  Random randomNum = new Random();
+	  
+	  int max = 40;
+	  int min = 20;
+	  
+	  Pixel startPixel = null;
+	  Pixel newPixel = null;
+	  
+	  int randomPercent = min + randomNum.nextInt(max);
+	  
+	  if (pixels.length % 2  == 1)
+	  {
+		  
+	  }
+	  else
+	  {
+		  double divRowLength = pixels.length / 100;
+		  
+		  for (int row = 0; row < pixels.length; row++)
+		  {
+			  for (int col = 0; col < pixels[0].length; col++)
+			  {
+				  startPixel = pixels[row][col];      
+			      newPixel = pixels[row += divRowLength * randomPercent][col];
+			  }
+		  }
+		  
+	  }
+	  
   }
   
   /** copy from the passed fromPic to the

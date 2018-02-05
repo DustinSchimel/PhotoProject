@@ -28,12 +28,12 @@ public class PictureTester
   }
   
   /** Method to test mirrorTemple */
-  public static void testMirrorTemple()
+  public static void testMirrorSwan()
   {
-    Picture temple = new Picture("temple.jpg");
-    temple.explore();
-    temple.mirrorTemple();
-    temple.explore();
+    Picture swan = new Picture("swan.jpg");
+    swan.explore();
+    swan.mirrorSwan();
+    swan.explore();
   }
   
   /** Method to test the collage method */
@@ -60,6 +60,14 @@ public class PictureTester
 	  beach.explore();
   }
   
+  public static void testGlitch()
+  {
+	  Picture island = new Picture("CumberlandIsland.jpg");
+	  island.explore();
+	  island.glitchFilter();
+	  island.explore();
+  }
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -75,7 +83,7 @@ public class PictureTester
     //testGrayscale();
     //testFixUnderwater();
     //testMirrorVertical();
-    //testMirrorTemple();
+    //testMirrorSwan();
     //testMirrorArms();
     //testMirrorGull();
     //testMirrorDiagonal();
@@ -89,6 +97,8 @@ public class PictureTester
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
-    testKirby();
+    //testKirby();
+	  testGlitch();
+	  
   }
 }
