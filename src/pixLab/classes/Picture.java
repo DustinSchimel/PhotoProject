@@ -154,41 +154,42 @@ public class Picture extends SimplePicture
 	  
 	  Pixel startPixel = null;
 	  Pixel newPixel = null;
-	  double adding = 0;
+	  
+	  int shiftedCol = 0;
 	  
 	  int randomPercent = min + randomNum.nextInt(max);
 	  
-	  if (pixels.length % 2  == 1)
-	  {
+	  //if (pixels[0].length % 2  == 1)
+	  //{
 		  
-	  }
-	  else
-	  {
-		  double divRowLength = pixels.length / 100;
+	  //}
+	  //else
+	  //{
+		  int divColLength = pixels[0].length / 100;
 		  
-		  double multiplier = divRowLength * randomPercent;
+		  int shift = divColLength * randomPercent;
 		  
 		  for (int row = 0; row < pixels.length; row++)
 		  {
 			  for (int col = 0; col < pixels[0].length; col++)
 			  {
 				  startPixel = pixels[row][col];      
-				  if (row + divRowLength * randomPercent < pixels.length)
+				  if (col + shift < pixels[0].length)
 				  {
-					  newPixel = pixels[row += multiplier][col];
+					  newPixel = pixels[row][col + shift];
 			      	  newPixel.setColor(startPixel.getColor());
 				  }
 				  else
 				  {
-					  adding = pixels.length - (row + multiplier);
-					  adding *= -1;
-					  newPixel = pixels[(int)adding][col];
+					  shiftedCol = pixels[0].length - (col + shift);
+					  shiftedCol *= -1;
+					  newPixel = pixels[row][shiftedCol];
 					  newPixel.setColor(startPixel.getColor());
 				  }
 			  }
 		  }
 		  
-	  }
+	  //}
 	  
   }
   
