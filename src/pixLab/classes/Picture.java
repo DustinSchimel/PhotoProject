@@ -144,9 +144,9 @@ public class Picture extends SimplePicture
     }
   }
   
-  public void glitchFilter()
+  public void glitchFilterShift()
   {
-	  Pixel[][] pixels = this.getPixels2D();
+	/*  Pixel[][] pixels = this.getPixels2D();
 	  Random randomNum = new Random();
 	  
 	  int max = 40;
@@ -159,12 +159,6 @@ public class Picture extends SimplePicture
 	  
 	  int randomPercent = min + randomNum.nextInt(max);
 	  
-	  //if (pixels[0].length % 2  == 1)
-	  //{
-		  
-	  //}
-	  //else
-	  //{
 		  int divColLength = pixels[0].length / 100;
 		  
 		  int shift = divColLength * randomPercent;
@@ -189,9 +183,88 @@ public class Picture extends SimplePicture
 				  }
 			  }
 		  }
-		  
-	  //}
+	  */
 	  
+	  Pixel [][] pixels = this.getPixels2D();
+	  int shiftAmount = (int) (.33 * pixels[0].length);
+	  int width = pixels[0].length;
+	  
+	  for (int row = 0; row < pixels.length; row++)
+	  {
+		  Color [] currentColors = new Color[pixels[0].length];
+				  
+		  for (int col = 0; col < pixels[row].length; col++)
+		  {
+			  currentColors[col] = pixels[row][col].getColor();
+		  }
+		  
+		  for (int col = 0; col < pixels[0].length; col++)
+		  {
+			  pixels[row][col].setColor(currentColors[(col + shiftAmount) % width]);
+		  }
+	  }
+  }
+  
+  public void glitchFilterChunk()
+  {
+	  Pixel [][] pixels = this.getPixels2D();
+	  
+	  Random randomNum = new Random();
+	  
+	  int firstStartRow = 0;
+	  int firstStartCol = 0;
+	  int firstEndRow = 0;
+	  int firstEndCol = 0;
+	  
+	  int firstBoxHeight = 0;
+	  int firstBoxWidth = 0;
+	  
+	  int secondStartRow = -1;
+	  int secondStartCol = 0;
+	  int secondEndRow = 0;
+	  int secondEndCol = 0;
+	  
+	  int secondBoxHeight = 0;
+	  int secondBoxWidth = 0;
+	  
+	  Color currentColor = null;
+	  
+	  int height = pixels.length;
+	  int width = pixels[0].length;
+	  
+	  firstStartRow = 0 + randomNum.nextInt(height);
+	  firstStartCol = 0 + randomNum.nextInt(width);
+	  
+	  while (firstEndRow < firstStartRow && firstEndCol < firstStartCol)
+	  {
+		  firstEndRow = 0 + randomNum.nextInt(height);
+		  firstEndCol = 0 + randomNum.nextInt(width);
+	  }
+	  
+	  firstBoxHeight = firstEndRow - firstStartRow;
+	  firstBoxWidth = firstEndCol - firstStartCol;
+	  
+	  secondBoxHeight = firstBoxHeight;
+	  secondBoxWidth = firstBoxWidth;
+	  
+	  while (secondStartRow != -1 && secondBoxWidth + secondEndCol <= width && secondBoxHeight + secondEndRow <= height)
+	  {
+		  secondStartRow = 0 + randomNum.nextInt(height);
+		  secondStartCol = 0 + randomNum.nextInt(width);
+		  
+		  secondEndRow = secondStartRow + secondBoxHeight;	//May have to do -1
+		  secondEndCol = secondStartCol + secondBoxWidth;
+	  }
+	  
+	  
+	  for (int firstBoxCurrentRow = firstStartRow, secondBoxCurrentRow = secondStartRow; firstBoxCurrentRow < firstEndRow; firstBoxCurrentRow++, secondBoxCurrentRow++)
+	  {
+		  for (int firstBoxCurrentCol = firstStartCol, secondBoxCurrentCol = secondStartCol; firstBoxCurrentCol < firstEndCol; firstBoxCurrentCol++, secondBoxCurrentCol++)
+		  {
+			  currentColor = pixels[firstBoxCurrentRow][firstBoxCurrentCol].getColor();
+			  pixels[secondBoxCurrentRow][secondBoxCurrentCol].setColor(currentColor);
+		  }
+	  }
   }
   
   /** copy from the passed fromPic to the

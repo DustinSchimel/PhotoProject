@@ -64,7 +64,8 @@ public class PictureTester
   {
 	  Picture island = new Picture("CumberlandIsland.jpg");
 	  island.explore();
-	  island.glitchFilter();
+	  island.glitchFilterShift();
+	  island.glitchFilterChunk();
 	  island.explore();
   }
   
