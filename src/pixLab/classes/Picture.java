@@ -174,55 +174,93 @@ public class Picture extends SimplePicture
 	  
 	  Random randomNum = new Random();
 	  
-	  int firstStartRow = 0;
-	  int firstStartCol = 0;
-	  int firstEndRow = 0;
-	  int firstEndCol = 0;
+	  int firstBoxStartRow = 0;
+	  int firstBoxStartCol = 0;
+	  int firstBoxEndRow = 0;
+	  int firstBoxEndCol = 0;
 	  
-	  int firstBoxHeight = 0;
-	  int firstBoxWidth = 0;
+	  int boxHeight = 0;
+	  int boxWidth = 0;
 	  
-	  int secondStartRow = -1;
-	  int secondStartCol = 0;
-	  int secondEndRow = 0;
-	  int secondEndCol = 0;
-	  
-	  int secondBoxHeight = 0;
-	  int secondBoxWidth = 0;
+	  int secondBoxStartRow = 0;
+	  int secondBoxStartCol = 0;
 	  
 	  Color currentColor = null;
 	  
-	  int height = pixels.length;
-	  int width = pixels[0].length;
+	  int pictureHeight = pixels.length;
+	  int pictureWidth = pixels[0].length;
 	  
-	  firstStartRow = 0 + randomNum.nextInt(height);
-	  firstStartCol = 0 + randomNum.nextInt(width);
+	  boolean rowPass = false;
+	  boolean colPass = false;
 	  
-	  while (firstEndRow < firstStartRow && firstEndCol < firstStartCol)
+	  boolean rowPass2 = false;
+	  boolean colPass2 = false;
+	  
+	  firstBoxStartRow = 0 + randomNum.nextInt(pictureHeight);
+	  firstBoxStartCol = 0 + randomNum.nextInt(pictureWidth);
+	  
+	  firstBoxEndRow = firstBoxStartCol + 100;
+	  firstBoxEndCol = firstBoxStartCol + 100;
+	  
+	  while (rowPass == false)
 	  {
-		  firstEndRow = 0 + randomNum.nextInt(height);
-		  firstEndCol = 0 + randomNum.nextInt(width);
+		  if (firstBoxEndRow >= pictureHeight)
+		  {
+			  firstBoxStartRow = firstBoxStartRow - 5;
+			  firstBoxEndRow = firstBoxEndRow - 5;
+		  }
+		  else
+		  {
+			  rowPass = true;
+		  } 
 	  }
 	  
-	  firstBoxHeight = firstEndRow - firstStartRow;
-	  firstBoxWidth = firstEndCol - firstStartCol;
-	  
-	  secondBoxHeight = firstBoxHeight;
-	  secondBoxWidth = firstBoxWidth;
-	  
-	  while (secondStartRow == -1 && secondBoxWidth + secondEndCol >= width && secondBoxHeight + secondEndRow >= height)
+	  while (colPass == false)
 	  {
-		  secondStartRow = 0 + randomNum.nextInt(height);
-		  secondStartCol = 0 + randomNum.nextInt(width);
-		  
-		  secondEndRow = secondStartRow + secondBoxHeight;	//May have to do -1
-		  secondEndCol = secondStartCol + secondBoxWidth;
+		  if (firstBoxEndCol >= pictureWidth)
+		  {
+			  firstBoxStartCol = firstBoxStartCol - 5;
+			  firstBoxEndCol = firstBoxEndCol - 5;
+		  }
+		  else
+		  {
+			  colPass = true;
+		  } 
 	  }
 	  
+	  boxHeight = firstBoxEndRow - firstBoxStartRow;
+	  boxWidth = firstBoxEndCol - firstBoxStartCol;
 	  
-	  for (int firstBoxCurrentRow = firstStartRow, secondBoxCurrentRow = secondStartRow; firstBoxCurrentRow < firstEndRow; firstBoxCurrentRow++, secondBoxCurrentRow++)
+	  secondBoxStartRow = 0 + randomNum.nextInt(boxHeight);
+	  secondBoxStartCol = 0 + randomNum.nextInt(boxWidth);
+	  
+	  while (rowPass2 == false)
 	  {
-		  for (int firstBoxCurrentCol = firstStartCol, secondBoxCurrentCol = secondStartCol; firstBoxCurrentCol < firstEndCol; firstBoxCurrentCol++, secondBoxCurrentCol++)
+		  if (secondBoxStartRow + 100 >= pictureHeight)
+		  {
+			  secondBoxStartRow = secondBoxStartRow - 5;
+		  }
+		  else
+		  {
+			  rowPass2 = true;
+		  } 
+	  }
+	  
+	  while (colPass2 == false)
+	  {
+		  if (secondBoxStartCol + 100 >= pictureWidth)
+		  {
+			  secondBoxStartCol = firstBoxStartCol - 5;
+		  }
+		  else
+		  {
+			  colPass2 = true;
+		  } 
+	  }
+	  
+	  for (int firstBoxCurrentRow = firstBoxStartRow, secondBoxCurrentRow = secondBoxStartRow; firstBoxCurrentRow < firstBoxEndRow; firstBoxCurrentRow++, secondBoxCurrentRow++)
+	  {
+		  for (int firstBoxCurrentCol = firstBoxStartCol, secondBoxCurrentCol = secondBoxStartCol; firstBoxCurrentCol < firstBoxEndCol; firstBoxCurrentCol++, secondBoxCurrentCol++)
 		  {
 			  currentColor = pixels[firstBoxCurrentRow][firstBoxCurrentCol].getColor();
 			  pixels[secondBoxCurrentRow][secondBoxCurrentCol].setColor(currentColor);
