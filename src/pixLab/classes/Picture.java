@@ -146,45 +146,6 @@ public class Picture extends SimplePicture
   
   public void glitchFilterShift()
   {
-	/*  Pixel[][] pixels = this.getPixels2D();
-	  Random randomNum = new Random();
-	  
-	  int max = 40;
-	  int min = 20;
-	  
-	  Pixel startPixel = null;
-	  Pixel newPixel = null;
-	  
-	  int shiftedCol = 0;
-	  
-	  int randomPercent = min + randomNum.nextInt(max);
-	  
-		  int divColLength = pixels[0].length / 100;
-		  
-		  int shift = divColLength * randomPercent;
-		  
-		  for (int row = 0; row < pixels.length; row++)
-		  {
-			  for (int col = 0; col < pixels[0].length; col++)
-			  {
-				  startPixel = pixels[row][col]; 
-				  Color startPixelColor = startPixel.getColor();
-				  if (col + shift < pixels[0].length)
-				  {
-					  newPixel = pixels[row][col + shift];
-			      	  newPixel.setColor(startPixelColor);
-				  }
-				  else
-				  {
-					  shiftedCol = pixels[0].length - (col + shift);
-					  shiftedCol *= -1;
-					  newPixel = pixels[row][shiftedCol];
-					  newPixel.setColor(startPixelColor);
-				  }
-			  }
-		  }
-	  */
-	  
 	  Pixel [][] pixels = this.getPixels2D();
 	  int shiftAmount = (int) (.33 * pixels[0].length);
 	  int width = pixels[0].length;
@@ -203,6 +164,8 @@ public class Picture extends SimplePicture
 			  pixels[row][col].setColor(currentColors[(col + shiftAmount) % width]);
 		  }
 	  }
+	  
+	  
   }
   
   public void glitchFilterChunk()
@@ -247,7 +210,7 @@ public class Picture extends SimplePicture
 	  secondBoxHeight = firstBoxHeight;
 	  secondBoxWidth = firstBoxWidth;
 	  
-	  while (secondStartRow != -1 && secondBoxWidth + secondEndCol <= width && secondBoxHeight + secondEndRow <= height)
+	  while (secondStartRow == -1 && secondBoxWidth + secondEndCol >= width && secondBoxHeight + secondEndRow >= height)
 	  {
 		  secondStartRow = 0 + randomNum.nextInt(height);
 		  secondStartCol = 0 + randomNum.nextInt(width);
