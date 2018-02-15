@@ -269,6 +269,33 @@ public class Picture extends SimplePicture
 	  }
   }
   
+  public void randomRectangles()
+  {
+	  Pixel [][]pixels = this.getPixels2D();
+	  
+	  Random randomNum = new Random();
+	  
+	  int pictureHeight = pixels.length;
+	  int pictureWidth = pixels[0].length;
+	  
+	  int recStartRow = 0;
+	  int recStartCol = 0;
+	  int recEndRow = 0;
+	  int recEndCol = 0;
+	  
+	  int recMaxHeight = (int).20 * pictureHeight;
+	  int recMaxWidth = (int).15 * pictureWidth;
+	  
+	  for (int index = 0; index < 4; index++)
+	  {
+		  recStartRow = 0;
+		  recStartCol = 0;
+		  recEndRow = 0;
+		  recEndCol = 0;
+		  
+	  }
+  }
+  
   /** copy from the passed fromPic to the
     * specified startRow and startCol in the
     * current picture
