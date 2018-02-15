@@ -186,6 +186,8 @@ public class Picture extends SimplePicture
 	  int secondBoxStartCol = 0;
 	  
 	  Color currentColor = null;
+	  int currentColorRed = -1;
+	  int currentColorBlue = -1;
 	  
 	  int pictureHeight = pixels.length;
 	  int pictureWidth = pixels[0].length;
@@ -258,11 +260,15 @@ public class Picture extends SimplePicture
 		  } 
 	  }
 	  
+	  
+	  
 	  for (int firstBoxCurrentRow = firstBoxStartRow, secondBoxCurrentRow = secondBoxStartRow; firstBoxCurrentRow < firstBoxEndRow; firstBoxCurrentRow++, secondBoxCurrentRow++)
 	  {
 		  for (int firstBoxCurrentCol = firstBoxStartCol, secondBoxCurrentCol = secondBoxStartCol; firstBoxCurrentCol < firstBoxEndCol; firstBoxCurrentCol++, secondBoxCurrentCol++)
 		  {
 			  currentColor = pixels[firstBoxCurrentRow][firstBoxCurrentCol].getColor();
+			  currentColorBlue = currentColor.getBlue();
+			  currentColorRed = currentColor.getRed();
 			  pixels[secondBoxCurrentRow][secondBoxCurrentCol].setColor(currentColor);
 		  }
 	  }
