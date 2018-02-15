@@ -179,9 +179,6 @@ public class Picture extends SimplePicture
 	  int firstBoxEndRow = 0;
 	  int firstBoxEndCol = 0;
 	  
-	  int boxHeight = 0;
-	  int boxWidth = 0;
-	  
 	  int secondBoxStartRow = 0;
 	  int secondBoxStartCol = 0;
 	  
@@ -198,10 +195,10 @@ public class Picture extends SimplePicture
 	  boolean rowPass2 = false;
 	  boolean colPass2 = false;
 	  
-	  firstBoxStartRow = 0 + randomNum.nextInt(pictureHeight);
-	  firstBoxStartCol = 0 + randomNum.nextInt(pictureWidth);
+	  firstBoxStartRow = 0 + randomNum.nextInt(pictureHeight - 1);
+	  firstBoxStartCol = 0 + randomNum.nextInt(pictureWidth - 1);
 	  
-	  firstBoxEndRow = firstBoxStartCol + 100;
+	  firstBoxEndRow = firstBoxStartRow + 100;
 	  firstBoxEndCol = firstBoxStartCol + 100;
 	  
 	  while (rowPass == false)
@@ -230,11 +227,8 @@ public class Picture extends SimplePicture
 		  } 
 	  }
 	  
-	  boxHeight = firstBoxEndRow - firstBoxStartRow;
-	  boxWidth = firstBoxEndCol - firstBoxStartCol;
-	  
-	  secondBoxStartRow = 0 + randomNum.nextInt(boxHeight);
-	  secondBoxStartCol = 0 + randomNum.nextInt(boxWidth);
+	  secondBoxStartRow = 0 + randomNum.nextInt(pictureHeight - 1);
+	  secondBoxStartCol = 0 + randomNum.nextInt(pictureWidth - 1);
 	  
 	  while (rowPass2 == false)
 	  {
@@ -269,7 +263,8 @@ public class Picture extends SimplePicture
 			  currentColor = pixels[firstBoxCurrentRow][firstBoxCurrentCol].getColor();
 			  currentColorBlue = currentColor.getBlue();
 			  currentColorRed = currentColor.getRed();
-			  pixels[secondBoxCurrentRow][secondBoxCurrentCol].setColor(currentColor);
+			  pixels[secondBoxCurrentRow][secondBoxCurrentCol].setBlue(currentColorBlue);
+			  pixels[secondBoxCurrentRow][secondBoxCurrentCol].setRed(currentColorRed);
 		  }
 	  }
   }
