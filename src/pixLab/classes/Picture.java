@@ -275,6 +275,10 @@ public class Picture extends SimplePicture
 	  
 	  Random randomNum = new Random();
 	  
+	  int randomColorBlue = -1;
+	  int randomColorRed = -1;
+	  int randomColorGreen = -1;
+	  
 	  int pictureHeight = pixels.length;
 	  int pictureWidth = pixels[0].length;
 	  
@@ -283,8 +287,14 @@ public class Picture extends SimplePicture
 	  int recEndRow = 0;
 	  int recEndCol = 0;
 	  
-	  int recMaxHeight = (int).20 * pictureHeight;
-	  int recMaxWidth = (int).15 * pictureWidth;
+	  int recMaxHeight = 250;
+	  int recMaxWidth = 150;
+	  
+	  int recMinHeight = 20;
+	  int recMinWidth = 20;
+	  
+	  boolean rowPass = false;
+	  boolean colPass = false;
 	  
 	  for (int index = 0; index < 4; index++)
 	  {
@@ -292,7 +302,53 @@ public class Picture extends SimplePicture
 		  recStartCol = 0;
 		  recEndRow = 0;
 		  recEndCol = 0;
+		  rowPass = false;
+		  colPass = false;
+		  currentColor = null;
 		  
+		  recStartRow = 0 + randomNum.nextInt(pictureHeight - 1);
+		  recStartCol = 0 + randomNum.nextInt(pictureWidth - 1);
+		  
+		  recEndRow = recStartRow + recMinHeight + randomNum.nextInt(recMaxHeight) - 1;
+		  recEndCol = recStartCol + recMinWidth + randomNum.nextInt(recMaxWidth) - 1;
+		  
+		  while (rowPass == false)
+		  {
+			  if (recEndRow >= pictureHeight - 1)
+			  {
+				  recStartRow = recStartRow - 1;
+				  recEndRow = recEndRow - 1;
+			  }
+			  else
+			  {
+				  rowPass = true;
+			  } 
+		  }
+		  
+		  while (colPass == false)
+		  {
+			  if (recEndCol >= pictureWidth - 1)
+			  {
+				  recStartCol = recStartCol - 1;
+				  recEndCol = recEndCol - 1;
+			  }
+			  else
+			  {
+				  colPass = true;
+			  } 
+		  }
+		  
+		  for (int currentRow = recStartRow; currentRow < recEndRow; currentRow++)
+		  {
+			  for (int currentCol = recStartCol; currentCol < recEndCol; currentCol++)
+			  {
+				  randomColorRed = 0 + randomNum.nextInt(255);
+				  randomColorGreen = 0 + randomNum.nextInt(255);
+				  randomColorBlue = 0 + randomNum.nextInt(255);
+				  Color randomColor = new Color(randomColorRed, randomColorGreen, randomColorBlue);
+				  pixels[currentRow][currentCol].setColor(randomColor);
+			  }
+		  }
 	  }
   }
   

@@ -66,6 +66,7 @@ public class PictureTester
 	  island.explore();
 	  island.glitchFilterShift();
 	  island.glitchFilterChunk();
+	  island.randomRectangles();
 	  island.explore();
   }
   
