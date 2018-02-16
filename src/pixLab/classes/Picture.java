@@ -304,7 +304,6 @@ public class Picture extends SimplePicture
 		  recEndCol = 0;
 		  rowPass = false;
 		  colPass = false;
-		  currentColor = null;
 		  
 		  recStartRow = 0 + randomNum.nextInt(pictureHeight - 1);
 		  recStartCol = 0 + randomNum.nextInt(pictureWidth - 1);
