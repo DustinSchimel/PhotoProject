@@ -70,6 +70,14 @@ public class PictureTester
 	  island.explore();
   }
   
+  public static void testClassFilter()
+  {
+	  Picture island = new Picture("CumberlandIsland.jpg");
+	  island.explore();
+	  island.rectangleReflection();
+	  island.explore();
+  }
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -100,7 +108,8 @@ public class PictureTester
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
     //testKirby();
-	  testGlitch();
+	//testGlitch();
+	testClassFilter();
 	  
   }
 }
