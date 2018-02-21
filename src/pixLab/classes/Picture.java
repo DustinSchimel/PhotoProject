@@ -289,6 +289,33 @@ public class Picture extends SimplePicture
 	  }
   }
   
+  public void bobRoss()
+  {
+	  Pixel [][] islandPixels = this.getPixels2D();
+	  
+	  Picture bob = new Picture("BobRoss.png");
+	  Pixel [][] bobPixels = bob.getPixels2D();
+	  
+	  int islandHeight = islandPixels.length;
+	  int islandWidth = islandPixels[0].length;
+	  
+	  int bobHeight = bobPixels.length;
+	  int bobWidth = bobPixels[0].length;
+	  
+	  Color currentIslandColor = null;
+	  
+	  for (int islandCurrentRow = 0, bobCurrentRow = 0; islandCurrentRow < islandWidth || bobCurrentRow < bobWidth; islandCurrentRow++, bobCurrentRow++)
+	  {
+		  for (int islandCurrentCol = 0, bobCurrentCol = 0; islandCurrentCol < islandHeight || bobCurrentCol < bobHeight; islandCurrentCol++, bobCurrentCol++)
+		  {
+			  currentIslandColor = islandPixels[islandCurrentRow][islandCurrentCol].getColor();
+			  
+			  //if ()
+			  
+		  }
+	  }
+  }
+  
   public void randomRectangles()
   {
 	  Pixel [][]pixels = this.getPixels2D();
